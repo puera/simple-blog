@@ -1,11 +1,11 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import SEO from '../components/Seo';
 import PostItem from '../components/PostItem';
 
-interface PostListProps {
+interface EdgesProps {
   node: {
     frontmatter: {
       title: string;
@@ -21,32 +21,16 @@ interface PostListProps {
   };
 }
 
-const IndexPage: React.FC = () => {
-  const query = graphql`
-    {
-      allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
-        edges {
-          node {
-            frontmatter {
-              title
-              date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
-              description
-              category
-              background
-            }
-            timeToRead
-            fields {
-              slug
-            }
-          }
-        }
-      }
-    }
-  `;
+interface BlogListProps {
+  data: {
+    allMarkdownRemark: {
+      edges: EdgesProps[];
+    };
+  };
+}
 
-  const { allMarkdownRemark } = useStaticQuery(query);
-
-  const postList = allMarkdownRemark.edges as PostListProps[];
+const BlogList: React.FC<BlogListProps> = ({ data }) => {
+  const postList = data.allMarkdownRemark.edges;
 
   return (
     <Layout>
@@ -74,4 +58,30 @@ const IndexPage: React.FC = () => {
   );
 };
 
-export default IndexPage;
+export const query = graphql`
+  query PostList($skip: Int!, $limit: Int!) {
+    allMarkdownRemark(
+      sort: { fields: frontmatter___date, order: DESC }
+      limit: $limit
+      skip: $skip
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+            description
+            category
+            background
+          }
+          timeToRead
+          fields {
+            slug
+          }
+        }
+      }
+    }
+  }
+`;
+
+export default BlogList;
