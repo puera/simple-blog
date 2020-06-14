@@ -12,7 +12,7 @@ const MenuBar: React.FC = () => (
           <FaHome />
         </S.MenuBarItem>
       </S.MenuBarLink>
-      <S.MenuBarLink to="/search" title="Pesquisar">
+      <S.MenuBarLink to="/search/" title="Pesquisar">
         <S.MenuBarItem>
           <FaSearch />
         </S.MenuBarItem>
