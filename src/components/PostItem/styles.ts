@@ -25,7 +25,7 @@ export const PostItemWrapper = styled.section`
 
 export const PostItemTag = styled.div<PostItemTagProps>`
   align-items: center;
-  background: ${(props) => props.background};
+  background: ${(props) => (props.background ? props.background : '#1fa1f2')};
   border-radius: 50%;
   color: #fff;
   display: flex;
@@ -44,17 +44,17 @@ export const PostItemInfo = styled.div`
 `;
 
 export const PostItemDate = styled.time`
-  font-size: 0.9rem;
+  font-size: 14px;
 `;
 
 export const PostItemTitle = styled.h1`
-  font-size: 1.6rem;
+  font-size: 24px;
   font-weight: 700;
   margin: 0.2rem 0 0.5rem;
 `;
 
 export const PostItemDescription = styled.p`
-  font-size: 1.2rem;
+  font-size: 18px;
   font-weight: 300;
   line-height: 1.2;
 `;
