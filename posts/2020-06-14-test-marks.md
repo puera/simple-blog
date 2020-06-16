@@ -16,6 +16,8 @@ Luna tertius sua edendi pumice, tum. Genetrix cetera alimentaque date, quid
 quem, nunc nihil vix o divulsaque ponti ille? Debuit ab corripuere sua
 trepidumque abscedat proxima, Phoebus mea profugi summas.
 
+![Desert](/assets/img/desert.jpg)
+
     if (pplDriveCursor(debugExpansionFloating, 2) == 4) {
         metafileLdap += key_keywords_variable - control_jpeg;
         iteration = smartphone_wimax + soft_ctp_software;
