@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import SEO from '../components/Seo';
 import PostItem from '../components/PostItem';
+import Pagination from '../components/Pagination';
 
 interface EdgesProps {
   node: {
@@ -27,10 +28,20 @@ interface BlogListProps {
       edges: EdgesProps[];
     };
   };
+  pageContext: {
+    currentPage: number;
+    numPages: number;
+  };
 }
 
-const BlogList: React.FC<BlogListProps> = ({ data }) => {
+const BlogList: React.FC<BlogListProps> = ({ data, pageContext }) => {
   const postList = data.allMarkdownRemark.edges;
+
+  const { currentPage, numPages } = pageContext;
+  const isFirst = currentPage === 1;
+  const isLast = currentPage === numPages;
+  const prevPage = currentPage - 1 === 1 ? '/' : `/page/${currentPage - 1}`;
+  const nextPage = `/page/${currentPage + 1}`;
 
   return (
     <Layout>
@@ -54,6 +65,15 @@ const BlogList: React.FC<BlogListProps> = ({ data }) => {
           />
         ),
       )}
+
+      <Pagination
+        isFirst={isFirst}
+        isLast={isLast}
+        currentPage={currentPage}
+        numPages={numPages}
+        prevPage={prevPage}
+        nextPage={nextPage}
+      />
     </Layout>
   );
 };
