@@ -4,12 +4,16 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import SEO from '../components/Seo';
 import RecommendedPost from '../components/RecommendedPost';
+import Comments from '../components/Comments';
 
 import * as S from '../components/Post/styles';
 
 interface BlogPostProps {
   data: {
     markdownRemark: {
+      fields: {
+        slug: string;
+      };
       frontmatter: {
         title: string;
         description: string;
@@ -58,6 +62,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ data, pageContext }) => {
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </S.MainContent>
       <RecommendedPost next={next} previous={previous} />
+      <Comments url={post.fields.slug} title={post.frontmatter.title} />
     </Layout>
   );
 };
@@ -65,6 +70,9 @@ const BlogPost: React.FC<BlogPostProps> = ({ data, pageContext }) => {
 export const query = graphql`
   query Post($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
+      fields {
+        slug
+      }
       frontmatter {
         title
         description
