@@ -1,13 +1,21 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
+import Layout from '../components/Layout';
+import SEO from '../components/Seo';
+
+import * as S from '../components/Post/styles';
+
 interface BlogPostProps {
   data: {
     markdownRemark: {
       frontmatter: {
         title: string;
+        description: string;
+        date: string;
       };
       html: string;
+      timeToRead: number;
     };
   };
 }
@@ -16,10 +24,19 @@ const BlogPost: React.FC<BlogPostProps> = ({ data }) => {
   const post = data.markdownRemark;
 
   return (
-    <>
-      <h1>{post.frontmatter.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
-    </>
+    <Layout>
+      <SEO title={post.frontmatter.title} />
+      <S.PostHeader>
+        <S.PostDate>
+          {post.frontmatter.date} - {post.timeToRead} min de leitura
+        </S.PostDate>
+        <S.PostTitle>{post.frontmatter.title}</S.PostTitle>
+        <S.PostDescription>{post.frontmatter.description}</S.PostDescription>
+      </S.PostHeader>
+      <S.MainContent>
+        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      </S.MainContent>
+    </Layout>
   );
 };
 
@@ -28,8 +45,11 @@ export const query = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       frontmatter {
         title
+        description
+        date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
       }
       html
+      timeToRead
     }
   }
 `;
