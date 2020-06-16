@@ -18,6 +18,7 @@ trepidumque abscedat proxima, Phoebus mea profugi summas.
 
 ![Desert](/assets/img/desert.jpg)
 
+```js
     if (pplDriveCursor(debugExpansionFloating, 2) == 4) {
         metafileLdap += key_keywords_variable - control_jpeg;
         iteration = smartphone_wimax + soft_ctp_software;
@@ -33,6 +34,7 @@ trepidumque abscedat proxima, Phoebus mea profugi summas.
     }
     wddm_keyboard_secondary(flashGatewayErgonomics + 123705, 258298 +
             facebookMidi, 96 + switchMashup / refreshTrojan(1, outboxMmsText));
+```
 
 Est inque Phoebes in uteri evaserat pro cum germanamque, flammis quotiensque
 Talia regem modo percussere carpit serrae. **Poteras Somne** aviti tremuisse
