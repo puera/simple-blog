@@ -7,7 +7,7 @@ interface PostItemProps {
   background?: string;
   category: string;
   date: string;
-  timeToread: number;
+  timeToread?: number;
   title: string;
   description: string;
 }
