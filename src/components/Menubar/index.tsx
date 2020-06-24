@@ -54,6 +54,7 @@ const MenuBar: React.FC = () => {
           onClick={() => {
             window.__setPreferredDisplay(isListMode ? 'grid' : 'list');
           }}
+          className="display"
         >
           {isListMode ? <BsGrid3X3 /> : <FaList />}
         </S.MenuBarItem>
