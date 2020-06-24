@@ -6,6 +6,7 @@ type Props = {
   title?: string;
   lang?: string;
   description?: string;
+  image?: string;
   meta?: [];
 };
 
@@ -14,6 +15,7 @@ const SEO: React.FC<Props> = ({
   lang = 'eng',
   meta = [],
   title,
+  image,
 }) => {
   const { site } = useStaticQuery(
     graphql`
@@ -23,6 +25,7 @@ const SEO: React.FC<Props> = ({
             title
             description
             author
+            siteUrl
           }
         }
       }
@@ -30,6 +33,9 @@ const SEO: React.FC<Props> = ({
   );
 
   const metaDescription = description || site.siteMetadata.description;
+
+  const url = site.siteMetadata.siteUrl;
+  const ogImage = `${url}${image || '/assets/img/desert.jpg'}`;
 
   return (
     <Helmet
@@ -52,12 +58,16 @@ const SEO: React.FC<Props> = ({
           content: metaDescription,
         },
         {
+          property: `og:image`,
+          content: ogImage,
+        },
+        {
           property: `og:type`,
           content: `website`,
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:creator`,

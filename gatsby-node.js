@@ -50,6 +50,7 @@ exports.createPages = ({ graphql, actions }) => {
             description
             category
             background
+            image
           }
           timeToRead
           fields {

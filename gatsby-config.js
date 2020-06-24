@@ -7,6 +7,7 @@ module.exports = {
     title: `My Blog`,
     description: `A blog about development and other cool stuff.`,
     author: `Renann Souza`,
+    siteUrl: `https://`,
     position: `Desenvolvedor FullStack`,
   },
   plugins: [
