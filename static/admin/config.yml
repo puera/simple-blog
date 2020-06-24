@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: puera/simple-blog
+  branch: master
+  site_domain: cms.netlify.com
+
+publish_mode: editorial_workflow
+media_folder: "static/assets/img"
+public_folder: "assets/img"
+
+collections:
+  - label: "Posts"
+    name: "posts"
+    folder: "posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime", format: 'YYYY-MM-DD hh:mm:ss'}
+      - {label: "Image", name: "thumbnail", widget: "image"}
+      - {label: "Category", name: "category", widget: "select", options: ["css", "js", "html", "react"] }
+      - {label: "Background", name: "background", widget: "select", options: [
+        {label: "css", value: "#b31917" },
+        {label: "js", value: "#d6ba32" },
+        {label: "html", value: "#eb7728" },
+        {label: "react", value: "#1d2d6b" },
+        ]}
+      - {label: "Body", name: "body", widget: "markdown"}
