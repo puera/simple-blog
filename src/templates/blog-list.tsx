@@ -6,6 +6,8 @@ import SEO from '../components/Seo';
 import PostItem from '../components/PostItem';
 import Pagination from '../components/Pagination';
 
+import * as S from '../components/ListWrapper/styles';
+
 interface EdgesProps {
   node: {
     frontmatter: {
@@ -46,26 +48,27 @@ const BlogList: React.FC<BlogListProps> = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      {postList.map(
-        ({
-          node: {
-            frontmatter: { title, date, description, category, background },
-            timeToRead,
-            fields: { slug },
-          },
-        }) => (
-          <PostItem
-            slug={slug}
-            background={background}
-            category={category}
-            date={date}
-            timeToread={timeToRead}
-            title={title}
-            description={description}
-          />
-        ),
-      )}
-
+      <S.ListWrapper>
+        {postList.map(
+          ({
+            node: {
+              frontmatter: { title, date, description, category, background },
+              timeToRead,
+              fields: { slug },
+            },
+          }) => (
+            <PostItem
+              slug={slug}
+              background={background}
+              category={category}
+              date={date}
+              timeToread={timeToRead}
+              title={title}
+              description={description}
+            />
+          ),
+        )}
+      </S.ListWrapper>
       <Pagination
         isFirst={isFirst}
         isLast={isLast}

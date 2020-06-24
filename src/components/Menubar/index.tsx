@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { FaHome, FaSearch, FaRegLightbulb, FaArrowUp } from 'react-icons/fa';
+import {
+  FaHome,
+  FaSearch,
+  FaRegLightbulb,
+  FaArrowUp,
+  FaList,
+} from 'react-icons/fa';
 import { BsGrid3X3 } from 'react-icons/bs';
 
 import * as S from './styles';
 
 const MenuBar: React.FC = () => {
   const [theme, setTheme] = useState(null);
+  const [display, setDisplay] = useState(null);
 
   const isDarkMode = theme === 'dark';
+  const isListMode = display === 'list';
 
   useEffect(() => {
     setTheme(window.__theme);
+    setDisplay(window.__display);
+
     window.__onThemeChange = () => setTheme(window.__theme);
+    window.__onDisplayChange = () => setDisplay(window.__display);
   }, []);
 
   return (
@@ -38,8 +49,13 @@ const MenuBar: React.FC = () => {
         >
           <FaRegLightbulb />
         </S.MenuBarItem>
-        <S.MenuBarItem title="Mudar visualização">
-          <BsGrid3X3 />
+        <S.MenuBarItem
+          title="Mudar visualização"
+          onClick={() => {
+            window.__setPreferredDisplay(isListMode ? 'grid' : 'list');
+          }}
+        >
+          {isListMode ? <BsGrid3X3 /> : <FaList />}
         </S.MenuBarItem>
         <S.MenuBarItem title="Ir para Topo">
           <FaArrowUp />
